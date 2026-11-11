@@ -18,6 +18,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
+      <a href="#research">Research</a>
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
@@ -85,6 +86,7 @@
           <div class="about-section">
             <h3>🔬 Research</h3>
             <p>Research Intern at SRM University AP (Summer 2025), working on Explainable AI for adult autism detection with up to 99% cross-validated accuracy.</p>
+            <p>Co-author of an IEEE SPICES 2026 paper (Intelligent Computing Track) on training-free, real-time underwater video enhancement that runs at 30 FPS on CPU-only, low-power devices.</p>
           </div>
 
           <div class="about-section">
@@ -92,6 +94,7 @@
             <ul>
               <li>Generative AI, RAG and AI Agents</li>
               <li>Machine Learning and Explainable AI</li>
+              <li>Computer Vision and Image Enhancement</li>
               <li>Full-Stack Web Development</li>
               <li>Data Structures and Algorithms</li>
             </ul>
@@ -143,6 +146,7 @@
         <div class="skill-item">Scikit-learn</div>
         <div class="skill-item">TensorFlow</div>
         <div class="skill-item">Keras</div>
+        <div class="skill-item">OpenCV</div>
         <div class="skill-item">LangChain</div>
         <div class="skill-item">LangGraph</div>
         <div class="skill-item">SHAP</div>
@@ -178,6 +182,30 @@
         <h3>Secondary School Education</h3>
         <p>K.K.R's Gowtham Concept School</p>
         <p>2012 - 2021</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="container">
+      <h2>Research &amp; Publications</h2>
+      <div class="experience-grid">
+        <div class="experience-item">
+          <h3>Real-Time Adaptive Underwater Visual Restoration Using HSV-LAB Environmental Profiling on Low-Power Devices</h3>
+          <p class="experience-period">IEEE SPICES 2026 – Intelligent Computing Track (Paper ID: 1810) | Oct 2026 | Ongoing</p>
+          <p>Co-author, Dept. of CSE, SRM University AP</p>
+          <p>Adaptive, training-free underwater video enhancement for AUVs and low-power devices where GPUs are unavailable and a single fixed enhancement pipeline cannot handle changing water conditions.</p>
+          <ul>
+            <li><strong>Environmental profiling:</strong> converts each 720×360 frame to HSV and CIE L*a*b*, extracts 4 optical statistics (mean Hue, Saturation, Value and std. of L*) and scores it against 9 optical environments (clear ocean, deep sea, coral reef, turbid coastal, muddy, polluted, shallow coastal, tropical blue, artificial light) using heuristic confidence scoring, with no training data or neural network</li>
+            <li><strong>Confidence-aware pipeline selection:</strong> runs a single optimized pipeline on clear decisions; when the top two environments are close (|c1 − c2| &lt; 0.3, c2 &gt; 0.4) it runs both and blends outputs by confidence (w1F1 + w2F2) to avoid abrupt transitions; low-confidence frames fall back to a generic White Balance → CLAHE → Gamma chain</li>
+            <li><strong>Environment-specific enhancement:</strong> pipelines composed from 12 primitives in 5 groups (luminance/contrast, chromatic restoration, dehazing, structural enhancement, noise suppression), e.g. Deep Sea: Gamma → Retinex MSR → Bilateral → CLAHE; Polluted: Bilateral → Dehaze → CLAHE → Laplacian</li>
+            <li><strong>Temporal stability &amp; quality gate:</strong> a 10-frame sliding-window brightness stabilizer (β = 0.5) removes flicker; a Contrast Improvement Index gate (σenh/σorig ≥ 1.05) accepts only frames that genuinely improve, preventing artifacts on already-clean frames</li>
+            <li><strong>Results:</strong> 30 FPS on CPU with no GPU; averages of UIQM 190.20, UCIQE 53.44, Entropy 4.32 and CII 1.27 across all 9 environments, with peak contrast gain on coral reef (CII 1.83); ablation study confirmed each module contributes a distinct improvement</li>
+            <li>Packaged as the <strong>Underwater Vision Pro</strong> desktop app (live camera + batch video, per-frame metric export)</li>
+          </ul>
+          <p>Technologies used: Python, OpenCV, NumPy</p>
+          <a href="papers/underwater-visual-restoration.pdf" target="_blank" class="project-link">Download Paper (PDF) →</a>
+        </div>
       </div>
     </div>
   </section>
